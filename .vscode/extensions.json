@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.path-intellisense",
+    "dbaeumer.vscode-eslint",
+    "dsznajder.es7-react-js-snippets",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "ExodiusStudios.comment-anchors",
+    "visualstudioexptteam.vscodeintellicode"
+  ]
+}
