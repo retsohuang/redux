@@ -15,6 +15,10 @@
 - Prettier
 - lint-staged
 
+## Deploy your own
+
+Preview live with [CodeSandbox](https://codesandbox.io/s/github/retsohuang/next.js-with-tailwindcss-typescript)
+
 ## Development Setup
 
 You will need [Node.js](https://nodejs.org) **version 16+**, and [PNPM](https://pnpm.io).
