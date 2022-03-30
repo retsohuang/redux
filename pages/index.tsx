@@ -1,11 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-
-import { bugsAction, getBugsByUser, getUnresolvedBugs } from '@/features/bugs'
-import { projectsAction } from '@/features/projects'
-import store from '@/features/store'
-import { usersAction } from '@/features/users'
+import { bugsAction, getBugsByUser, getUnresolvedBugs } from 'store/bugs'
+import { projectsAction } from 'store/projects'
+import store from 'store/store'
+import { usersAction } from 'store/users'
 
 store.dispatch(usersAction.userAdded({ name: 'User 1' }))
 store.dispatch(usersAction.userAdded({ name: 'User 2' }))

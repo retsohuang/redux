@@ -15,7 +15,7 @@
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
       "@/pages/*": ["pages/*"],
-      "@/features/*": ["features/*"],
+      "@/store/*": ["store/*"],
       "@/services/*": ["services/*"],
       "@/styles/*": ["styles/*"],
       "@/utils/*": ["utils/*"]
