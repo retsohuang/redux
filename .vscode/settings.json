@@ -4,7 +4,7 @@
     "*.overrides": "less",
     "*.variables": "less"
   },
-  "eslint.validate": ["javascript", "javascriptreact"],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "editor.quickSuggestions": {
     "strings": true
   },
