@@ -9,7 +9,7 @@ const slice = createSlice({
     userAdded: (users, action) => {
       users.push({
         id: ++lastId,
-        name: action.payload
+        name: action.payload.name
       })
     }
   }
