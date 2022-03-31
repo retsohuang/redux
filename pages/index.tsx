@@ -1,31 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { bugsAction, getBugsByUser, getUnresolvedBugs } from 'store/bugs'
-import { projectsAction } from 'store/projects'
 import store from 'store/store'
-import { usersAction } from 'store/users'
 
-store.dispatch(() => {
-  store.dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
+store.dispatch({
+  type: 'apiCallBegan',
+  payload: {
+    url: '/api/bugs',
+    method: 'DELETE',
+    onSuccess: 'bugsReceived',
+    onError: 'apiRequestFailed'
+  }
 })
-
-store.dispatch({ type: 'error', payload: { message: 'An error occurred.' } })
-
-store.dispatch(usersAction.userAdded({ name: 'User 1' }))
-store.dispatch(usersAction.userAdded({ name: 'User 2' }))
-
-store.dispatch(projectsAction.projectAdded('Project 1'))
-
-store.dispatch(bugsAction.createBug('Bug 1'))
-store.dispatch(bugsAction.createBug('Bug 2'))
-store.dispatch(bugsAction.createBug('Bug 3'))
-store.dispatch(bugsAction.resolveBug(1))
-
-store.dispatch(bugsAction.bugAssignedToUser({ bugId: 1, userId: 1 }))
-
-console.table(getUnresolvedBugs(store.getState()))
-console.table(getBugsByUser(2)(store.getState()))
 
 const Home: NextPage = () => {
   return (
