@@ -3,14 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import store from 'store/store'
 
-import * as apiActions from '@/store/api'
+import { loadBugs } from '@/store/bugs'
 
-store.dispatch(
-  apiActions.callBegan({
-    url: '/api/bugs',
-    onSuccess: 'bugs/received'
-  })
-)
+// UI Layer
+store.dispatch(loadBugs())
 
 const Home: NextPage = () => {
   return (
