@@ -6,6 +6,10 @@ import { projectsAction } from 'store/projects'
 import store from 'store/store'
 import { usersAction } from 'store/users'
 
+store.dispatch(() => {
+  store.dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
+})
+
 store.dispatch(usersAction.userAdded({ name: 'User 1' }))
 store.dispatch(usersAction.userAdded({ name: 'User 2' }))
 
