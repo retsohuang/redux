@@ -5,7 +5,7 @@ import logger from '@/store/middleware/logger'
 
 const store = configureStore({
   reducer,
-  middleware: [logger]
+  middleware: [logger({ destination: 'console' })]
 })
 
 export default store
