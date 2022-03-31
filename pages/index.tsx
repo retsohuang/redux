@@ -10,6 +10,8 @@ store.dispatch(() => {
   store.dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
 })
 
+store.dispatch({ type: 'error', payload: { message: 'An error occurred.' } })
+
 store.dispatch(usersAction.userAdded({ name: 'User 1' }))
 store.dispatch(usersAction.userAdded({ name: 'User 2' }))
 
