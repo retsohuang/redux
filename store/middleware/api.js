@@ -1,10 +1,12 @@
+import * as apiActions from '@/store/api'
+
 const api =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
     next(action)
 
-    if (action.type !== 'apiCallBegan') {
+    if (action.type !== apiActions.callBegan.type) {
       return
     }
 
@@ -30,9 +32,17 @@ const api =
 
       const json = await response.json()
 
-      dispatch({ type: onSuccess, payload: json })
+      dispatch(apiActions.callSuccess(json))
+
+      if (onSuccess) {
+        dispatch({ type: onSuccess, payload: json })
+      }
     } catch (error) {
-      dispatch({ type: onError, payload: error.message })
+      dispatch(apiActions.callFailed({ errorMessage: error.message }))
+
+      if (onError) {
+        dispatch({ type: onError, payload: { errorMessage: error.message } })
+      }
     }
   }
 

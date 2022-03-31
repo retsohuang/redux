@@ -3,15 +3,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import store from 'store/store'
 
-store.dispatch({
-  type: 'apiCallBegan',
-  payload: {
+import * as apiActions from '@/store/api'
+
+store.dispatch(
+  apiActions.callBegan({
     url: '/api/bugs',
-    method: 'DELETE',
-    onSuccess: 'bugsReceived',
-    onError: 'apiRequestFailed'
-  }
-})
+    onSuccess: 'bugs/received'
+  })
+)
 
 const Home: NextPage = () => {
   return (
