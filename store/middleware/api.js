@@ -4,13 +4,18 @@ const api =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
-    next(action)
-
     if (action.type !== apiActions.callBegan.type) {
-      return
+      return next(action)
     }
 
-    const { url, method, data, onSuccess, onError } = action.payload
+    const { url, method, data, onStart, onSuccess, onError } = action.payload
+
+    if (onStart) {
+      dispatch({ type: onStart })
+    }
+
+    next(action)
+
     const options = {
       method,
       headers: {
