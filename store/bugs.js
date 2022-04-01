@@ -2,8 +2,6 @@ import { createSelector, createSlice } from '@reduxjs/toolkit'
 
 import * as apiActions from '@/store/api'
 
-let lastId = 0
-
 const bugsSlice = createSlice({
   name: 'bugs',
   initialState: {
@@ -23,12 +21,8 @@ const bugsSlice = createSlice({
     bugsRequestFailed: (bugs, action) => {
       bugs.loading = false
     },
-    createBug: (bugs, action) => {
-      bugs.list.push({
-        id: ++lastId,
-        description: action.payload,
-        resolved: false
-      })
+    bugAdded: (bugs, action) => {
+      bugs.list.push(action.payload)
     },
     deleteBug: (bugs, action) => {
       const index = bugs.list.findIndex((bug) => bug.id === action.payload.id)
@@ -77,5 +71,13 @@ export const loadBugs = () => (dispatch, getState) => {
     })
   )
 }
+
+export const addBug = (bug) =>
+  apiActions.callBegan({
+    url,
+    method: 'POST',
+    data: bug,
+    onSuccess: bugsAction.bugAdded.type
+  })
 
 export default bugsSlice.reducer

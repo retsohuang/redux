@@ -3,12 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import store from 'store/store'
 
-import { loadBugs } from '@/store/bugs'
+import { addBug } from '@/store/bugs'
 
 // UI Layer
-store.dispatch(loadBugs())
-
-setTimeout(() => store.dispatch(loadBugs()), 2000)
+store.dispatch(addBug({ description: 'a' }))
 
 const Home: NextPage = () => {
   return (
