@@ -41,7 +41,6 @@ const bugsSlice = createSlice({
 })
 
 const selectBugsList = (state) => state.entities.bugs.list
-export const bugsAction = bugsSlice.actions
 export const getUnresolvedBugs = createSelector(selectBugsList, (bugs) =>
   bugs.filter((bug) => !bug.resolved)
 )
@@ -59,9 +58,9 @@ export const loadBugs = () => (dispatch, getState) => {
   dispatch(
     apiActions.callBegan({
       url,
-      onStart: bugsAction.bugsRequested.type,
-      onError: bugsAction.bugsRequestFailed.type,
-      onSuccess: bugsAction.bugsReceived.type
+      onStart: bugsSlice.actions.bugsRequested.type,
+      onError: bugsSlice.actions.bugsRequestFailed.type,
+      onSuccess: bugsSlice.actions.bugsReceived.type
     })
   )
 }
@@ -71,7 +70,7 @@ export const addBug = (bug) =>
     url,
     method: 'POST',
     data: bug,
-    onSuccess: bugsAction.bugAdded.type
+    onSuccess: bugsSlice.actions.bugAdded.type
   })
 
 export const resolveBug = (id) =>
@@ -79,7 +78,7 @@ export const resolveBug = (id) =>
     url: `${url}/${id}`,
     method: 'PATCH',
     data: { resolved: true },
-    onSuccess: bugsAction.bugResolved.type
+    onSuccess: bugsSlice.actions.bugResolved.type
   })
 
 export const assignBugToUser = ({ bugId, userId }) =>
@@ -87,7 +86,7 @@ export const assignBugToUser = ({ bugId, userId }) =>
     url: `${url}/${bugId}`,
     method: 'PATCH',
     data: { userId },
-    onSuccess: bugsAction.bugAssignedToUser.type
+    onSuccess: bugsSlice.actions.bugAssignedToUser.type
   })
 
 export default bugsSlice.reducer
