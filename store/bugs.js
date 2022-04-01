@@ -24,21 +24,15 @@ const bugsSlice = createSlice({
     bugAdded: (bugs, action) => {
       bugs.list.push(action.payload)
     },
-    deleteBug: (bugs, action) => {
+    bugResolved: (bugs, action) => {
       const index = bugs.list.findIndex((bug) => bug.id === action.payload.id)
-      if (index !== -1) {
-        bugs.list.splice(index, 1)
-      }
-    },
-    resolveBug: (bugs, action) => {
-      const index = bugs.list.findIndex((bug) => bug.id === action.payload)
       if (index !== -1) {
         bugs.list[index].resolved = true
       }
     },
     bugAssignedToUser: (bugs, action) => {
-      const { bugId, userId } = action.payload
-      const index = bugs.list.findIndex((bug) => bug.id === bugId)
+      const { id, userId } = action.payload
+      const index = bugs.list.findIndex((bug) => bug.id === id)
       if (index !== -1) {
         bugs.list[index].userId = userId
       }
@@ -78,6 +72,22 @@ export const addBug = (bug) =>
     method: 'POST',
     data: bug,
     onSuccess: bugsAction.bugAdded.type
+  })
+
+export const resolveBug = (id) =>
+  apiActions.callBegan({
+    url: `${url}/${id}`,
+    method: 'PATCH',
+    data: { resolved: true },
+    onSuccess: bugsAction.bugResolved.type
+  })
+
+export const assignBugToUser = ({ bugId, userId }) =>
+  apiActions.callBegan({
+    url: `${url}/${bugId}`,
+    method: 'PATCH',
+    data: { userId },
+    onSuccess: bugsAction.bugAssignedToUser.type
   })
 
 export default bugsSlice.reducer

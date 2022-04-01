@@ -8,7 +8,8 @@ import reducer from '@/store/reducers'
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([logger({ destination: 'console' }), toast, api])
+    getDefaultMiddleware().concat([logger({ destination: 'console' }), toast, api]),
+  devTools: process.env.NODE_ENV !== 'production'
 })
 
 export default store

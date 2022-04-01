@@ -3,10 +3,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import store from 'store/store'
 
-import { addBug } from '@/store/bugs'
+import { addBug, assignBugToUser, resolveBug } from '@/store/bugs'
 
 // UI Layer
 store.dispatch(addBug({ description: 'a' }))
+
+store.dispatch(assignBugToUser({ bugId: 1, userId: 1 }))
+
+store.dispatch(resolveBug(1))
 
 const Home: NextPage = () => {
   return (
