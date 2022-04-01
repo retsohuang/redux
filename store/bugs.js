@@ -18,6 +18,7 @@ const bugsSlice = createSlice({
     bugsReceived: (bugs, action) => {
       bugs.list = action.payload
       bugs.loading = false
+      bugs.lastFetch = Date.now()
     },
     bugsRequestFailed: (bugs, action) => {
       bugs.loading = false
@@ -60,12 +61,21 @@ export const getBugsByUser = (userId) =>
   createSelector(selectBugsList, (bugs) => bugs.filter((bug) => bug.userId === userId))
 
 const url = '/api/bugs'
-export const loadBugs = () =>
-  apiActions.callBegan({
-    url,
-    onStart: bugsAction.bugsRequested.type,
-    onError: bugsAction.bugsRequestFailed.type,
-    onSuccess: bugsAction.bugsReceived.type
-  })
+export const loadBugs = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.bugs
+
+  if (Date.now() - lastFetch < 1000 * 60 * 10) {
+    return
+  }
+
+  dispatch(
+    apiActions.callBegan({
+      url,
+      onStart: bugsAction.bugsRequested.type,
+      onError: bugsAction.bugsRequestFailed.type,
+      onSuccess: bugsAction.bugsReceived.type
+    })
+  )
+}
 
 export default bugsSlice.reducer

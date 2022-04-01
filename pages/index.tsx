@@ -8,6 +8,8 @@ import { loadBugs } from '@/store/bugs'
 // UI Layer
 store.dispatch(loadBugs())
 
+setTimeout(() => store.dispatch(loadBugs()), 2000)
+
 const Home: NextPage = () => {
   return (
     <div className='flex min-h-screen flex-col items-center justify-center py-2'>
