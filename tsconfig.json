@@ -14,9 +14,10 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
-      "@/store/*": ["store/*"],
       "@/services/*": ["services/*"],
+      "@/store/*": ["store/*"],
       "@/styles/*": ["styles/*"],
       "@/utils/*": ["utils/*"]
     },
