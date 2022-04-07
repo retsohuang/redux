@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import store from 'store/store'
 
 import { addBug, assignBugToUser, resolveBug } from '@/store/bugs'
+import createStore from '@/store/createStore'
+
+const store = createStore()
 
 // UI Layer
 store.dispatch(addBug({ description: 'a' }))
