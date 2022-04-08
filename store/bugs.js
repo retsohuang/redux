@@ -2,7 +2,7 @@ import { createSelector, createSlice } from '@reduxjs/toolkit'
 
 import * as apiActions from '@/store/api'
 
-const bugsSlice = createSlice({
+export const bugsSlice = createSlice({
   name: 'bugs',
   initialState: {
     list: [],
