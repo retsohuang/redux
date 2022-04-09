@@ -55,7 +55,7 @@ export const loadBugs = () => (dispatch, getState) => {
     return
   }
 
-  dispatch(
+  return dispatch(
     apiActions.callBegan({
       url,
       onStart: bugsSlice.actions.bugsRequested.type,
