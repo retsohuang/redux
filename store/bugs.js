@@ -40,12 +40,12 @@ export const bugsSlice = createSlice({
   }
 })
 
-const selectBugsList = (state) => state.entities.bugs.list
-export const getUnresolvedBugs = createSelector(selectBugsList, (bugs) =>
+export const selectBugs = (state) => state.entities.bugs.list
+export const getUnresolvedBugs = createSelector(selectBugs, (bugs) =>
   bugs.filter((bug) => !bug.resolved)
 )
 export const getBugsByUser = (userId) =>
-  createSelector(selectBugsList, (bugs) => bugs.filter((bug) => bug.userId === userId))
+  createSelector(selectBugs, (bugs) => bugs.filter((bug) => bug.userId === userId))
 
 const url = '/api/bugs'
 export const loadBugs = () => (dispatch, getState) => {

@@ -2,18 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { addBug, assignBugToUser, resolveBug } from '@/store/bugs'
-import createStore from '@/store/createStore'
-
-const store = createStore()
-
-// UI Layer
-store.dispatch(addBug({ description: 'a' }))
-
-store.dispatch(assignBugToUser({ bugId: 1, userId: 1 }))
-
-store.dispatch(resolveBug(1))
-
 const Home: NextPage = () => {
   return (
     <div className='flex min-h-screen flex-col items-center justify-center py-2'>
